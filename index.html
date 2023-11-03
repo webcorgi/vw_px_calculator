@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 16px
+        }
+
+        h1 {
+            margin-bottom: 30px
+        }
+
+        .wrap {
+            position: relative;
+            padding: 70px 10px;
+            text-align: center
+        }
+
+        .inpt {
+            border: 1px solid #ddd;
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+            line-height: 50px;
+            padding: 10px
+        }
+
+        .inpt.w2 {
+            width: 50px
+        }
+
+        button {
+            width: 80px;
+            height: 50px;
+            margin: 10px;
+            line-height: 50px;
+        }
+
+        .cal01 {
+            margin: 30px 0 30px
+        }
+
+        .cal_box {
+            text-align: left;
+            margin: 0 auto;
+            width: 400px
+        }
+
+        .aa {
+            display: inline-block;
+            width: 120px
+        }
+
+        .calval {
+            margin-left: 15px
+        }
+
+        .vi_mo {
+            display: none
+        }
+
+        @media screen and (max-width:500px) {
+            .vi_mo {
+                display: block
+            }
+
+            .cal_box {
+                width: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>PX -> VW</h1>
+        <div class="container">
+            <label for="w01">기준 px</label>
+            <input type="number" id="w01" class="inpt" /> <br class="vi_mo">
+            <label for="txt02">영역 px</label>
+            <input type="number" id="w02" class="inpt" /> <br class="vi_mo">
+            <label for="len">소수점</label>
+            <input type="number" id="len" class="inpt w2" value="3" />
+            <button type="button" id="btn_cal">계산</button><br>
+        </div>
+        <div class="cal_box">
+            <div class="cal01">
+                <span class="aa">vw 값은요 </span> : <span id="number" class="calval"></span>
+            </div>
+            <div class="cal02">
+                <span class="aa">소수점 <em id="lenTxt"></em> 자리 </span> :
+                <span id="lenNum" class="calval"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('#btn_cal').on('click', function () {
+                var allNum = $('#w01').val();
+                var calNum = $('#w02').val();
+                var len = $('#len').val();
+                if (!allNum.length || !calNum.length || !len.length) {
+                    alert('입력해야지 :D')
+                } else {
+                    var vw = (calNum * 100) / allNum;
+                    $('#number').text(vw);
+                    $('#lenTxt').text(len);
+                    $('#lenNum').text(vw.toFixed(len));
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
